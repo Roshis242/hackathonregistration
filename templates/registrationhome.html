@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'image/logos.png' %}">
+    <script src="https://kit.fontawesome.com/655257df20.js" crossorigin="anonymous"></script>
+    <title>Registration For Hackathon</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            scroll-behavior: smooth;
+        }
+        body{
+            background: url("{% static 'image/ai3.jpg' %}");
+            background-size: cover;
+            transition: .5s;
+            position: relative;
+            margin: 0;
+        }
+        .box{
+            height: 1200px;
+            width: 80%;
+            margin-top: 10vh;
+            margin-left: 10%;
+            border-radius: 0 50px;
+        }
+        .main-box{
+            height: 700px;
+            width: 100%;
+            display: flex;
+        }
+        .image-box{
+            width: 50%;
+            height: 700px;
+            background: url("{% static 'image/hack.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 0 0 0 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        .image-box-content .logo-img{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+        }
+        .image-box-content .info-img{
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 200px;
+            height: 100px;
+        }
+        .image-box-content span{
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 700;
+            font-size: 60px;
+            text-transform: uppercase;
+            text-shadow: 1px 2px 5px cyan;
+        }
+        .content-box{
+            width: 50%;
+            height: 700px;
+            background: linear-gradient(to bottom right, violet, cyan, white);
+            border-radius: 0 50px 0 0;
+        }
+        .content-title{
+            height: 50px;
+            width: 90%;
+            text-align: center;
+            margin: 20px;
+            border-radius: 50px;
+            border: 3px solid gold;
+            color: white;
+            transition: all .3s;
+        }
+        .content-title span{
+            font-weight: 700;
+            font-size: 33px;
+            text-transform: uppercase;
+        }
+        .content-title:hover{
+            background: white;
+            color: black;
+            border: none;
+        }
+        #form{
+        	margin: 40px;
+            margin-top: 0px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 50px;
+        }
+        #form .form-field{
+            width: 100%;
+            height: fit-content;
+        }
+        #form label{
+            font-size: 20px;
+        }
+        #form input{
+            margin: 10px 20px;
+            border: 1px solid cyan;
+            border-radius: 0 20px 20px 0;
+            outline: none;
+            box-shadow: 1px 0 5px 2px cyan;
+            width: 90%;
+            height: 25px;
+            transition: all .3s;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        #form input:hover{
+            box-shadow: 1px 0 5px 2px blue;
+        }
+        .form-field a{
+            text-decoration: none;
+            text-align: center;
+            border: 2px solid #333;
+            border-radius: 30px;
+            width: 90%;
+            color: black;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            margin: 5px;
+            transition: .2s;
+        }
+        .form-field a:hover{
+            background-color: #333;
+            color: white;
+        }
+        #form #register{
+            border: 2px solid blue;
+            background: linear-gradient(to right, violet, cyan);
+            outline: none;
+            height: 40px;
+            width: 200px;
+            border-radius: 30px;
+            box-shadow: none;
+            font-size: 20px;
+            font-weight: 500;
+            color: #222;
+            padding: 2px;
+            transition: all .3s;
+        }
+        #form #register:hover{
+            color: white;
+            background: linear-gradient(to left, gold, cyan);;
+            box-shadow: 0 0 8px 4px cyan;
+        }
+        #form span{
+            border-top: 2px solid black;
+            width: 90%;
+            color: black;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            margin: 5px;
+        }
+        .form-field img{
+            width: 100%;
+        }
+        .connect{
+            width: 90%;
+            margin-left: 5%;
+            height: fit-content;
+            margin-top: 12px;
+        }
+        .connect p{
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 25px;
+        }
+        .connect .connect-links{
+            width: 100%;
+            height: fit-content;
+        }
+        .connect .connect-links a{
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-color: rgb(66, 66, 66);
+            margin:0 10px 10px 0;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            color: #ffffff;
+            transition: all 0.5s ease;
+        }
+        .connect .connect-links a:hover{
+            color: #24262b;
+            background-color: #ffffff;
+            box-shadow: inset 0 0 2px 1px rgba(102, 102, 102, 0.829), 0 0 2px 1px rgba(104, 104, 104, 0.87);
+        }
+        @media screen and (max-width: 1300px){
+            .main-box{
+                display: inline-block;
+            }
+            .image-box{
+            width: 100%;
+            height: 400px;
+            margin-bottom: -20px;
+            border-radius: 50px 0 0 0;
+            }
+            .content-box{
+            width: 100%;
+            height: fit-content;
+            margin-top: 0;
+            border-radius: 0 0 50px 0;
+            }
+        }
+        @media screen and (max-width: 800px){
+            .box{
+            width: 90%;
+            margin-left: 5%;
+            }
+            .image-box-content .logo-img{
+            top: 80px;
+            left: 0;
+        }
+        .image-box-content span{
+            margin-left: 10px;
+        }
+        }
+        @media screen and (max-width: 550px){
+            .box{
+            width: 100%;
+            margin-left: 0;
+            margin-top: 2vh;
+            }
+            .image-box-content span{
+                font-size: 40px;
+            }
+            .image-box-content .logo-img{
+            top: 50px;
+            left: 0;
+        }
+        .image-box-content span{
+            margin-left: 20px;
+        }
+        .content-title span{
+            font-weight: 700;
+            font-size: 27px;
+            text-transform: uppercase;
+        }
+        #form{
+        	margin: 20px;
+            margin-top: 0px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 50px;
+        }
+        #form label{
+            font-size: 20px;
+            margin-left: 2px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <section class="box">
+        <div class="main-box">
+            <div class="image-box">
+                <div class="image-box-content">
+                    <span>Hackathon</span>
+                    <img src="{% static 'image/logo.png' %}" class="logo-img" alt="College Logo">
+                    <img src="{% static 'image/logos.png' %}" class="info-img" alt="Info">
+                </div>
+            </div>
+            <div class="content-box">
+                <div class="content-title"><span>Registration form</span></div>
+                <form action="{% url 'home' %}" method="post" id="form" enctype="multipart/form-data"  onsubmit="submitFuntion()">
+                    <div class="form-field">
+                        <a href="{% url 'hackathoninfo' %}">Click To View Information Regarding Hackathon</a>
+                    </div>
+                    {% if user.is_superuser %}
+                    <div class="form-field">
+                        <a href="{% url 'teamdetails' %}">View Registered Teams</a>
+                    </div>
+                    {% endif %}
+                    {% csrf_token %}
+                    <div class="form-field">
+                        <label for="cname">College Name:</label>
+                        <input type="text" name="cname" id="cname" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="tname">Team Name:</label>
+                        <input type="text" name="tname" id="tname" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="name">Name Of Participants:</label>
+                        <input type="text" name="name1" id="name1" required>
+                        <input type="text" name="name2" id="name2" required>
+                        <input type="text" name="name3" id="name3" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="email">Email Of Participants:</label>
+                        <input type="email" name="email1" id="email1" required>
+                        <input type="email" name="email2" id="email2" required>
+                        <input type="email" name="email3" id="email3" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="phone">Phone No. Of Participants:</label>
+                        <input type="tel" name="phone1" id="phone1" required>
+                        <input type="tel" name="phone2" id="phone2" required>
+                        <input type="tel" name="phone3" id="phone3" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="">Scan The QR Code To Pay For The Registration(Required amount: Rs.3000 per team):</label>
+                        <img src="{% static 'image/esewaqrcode9817968033.jpg' %}" alt="">
+                    </div>
+                    <div class="form-field">
+                        <label for="proof">Upload An Image Or Screenshot Of Payment Slip(Provided By Esewa) As The Proof Of Paymenet:</label>
+                        <input type="file" name="proof" id="proof" style="border-radius: 10px;border: none;padding: 4px;height: 35px;" required>
+                    </div>
+                    <input type="submit" value="Register" id="register">
+                    <span>For more information regarding HACKATHON, send an email to: xcc@xavier.edu.np</span>
+                    <div class=" form -field connect">
+                        <p>Connect With Us</p>
+                        <div class="connect-links">
+                            <a href="https://www.facebook.com/XCACC" target="_self"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/xaviercomputerandcodingclub/" target="_self"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        function submitFuntion(){
+            window.location.href = "{% url 'thankyou' %}";
+        };
+    </script>
+</body>
+</html>

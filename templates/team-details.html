@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/655257df20.js" crossorigin="anonymous"></script>
+    <title>Thankyou!! XAVIER HACKATHON 2021</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        body{
+            height: auto;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: #333;
+            background-image: url("{% static 'image/ai3.jpg' %}");
+            background-size: cover;
+        }
+        section.main-box{
+            height: fit-content;
+            width: 80%;
+            background: linear-gradient(to bottom right, violet, white, white, white, cyan);
+            margin-top: 4%;
+            margin-left: 10%;
+            border-radius: 30px;
+        }
+        .detail-box{
+            height: 100%;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        .teams{
+            border: 2px solid darkblue;
+            border-radius: 10px;
+            height: fit-content;
+            width: 48%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+        .teams h4{
+            font-weight: 500;
+            font-size: 20px;
+            border: 1px solid #444;
+            border-radius: 20px;
+            padding: 3px;
+        }
+        .teams p{
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .teams img{
+            width: 96%;
+            margin-left: 2%;
+        }
+        .main-box span{
+            display: inline-block;
+            height: 30px;
+            width: 70px;
+            background-color: blue;
+            border-radius: 6px;
+            text-align: center;
+            margin-left: 10px;
+        }
+        .main-box span a{
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+        }
+        @media screen and (max-width: 850px){
+            section.main-box{
+            width: 96%;
+            margin-left: 2%;
+            border-radius: 20px;
+        }
+            .teams{
+            width: 100%;
+        }
+        }
+    </style>
+</head>
+<body>
+    <section class="main-box">
+        <h4 style="text-align: center;">Total team entries: {{team.count}}</h4>
+        <span><a href="/"> &larr; Back</a></span>
+        <div class="detail-box">
+            {% if team %}
+                {% for t in team %}
+            <div class="teams">
+                <h4>College name: {{t.collegename}}</h4>
+                <p>Team name: {{t.teamname}}</p>
+                <p> First Participant Info: </p>
+                <p>Name: {{t.name1}} || Email: {{t.email1}} || Phone No: {{t.phnumber1}}</p>
+                <p> Second Participant Info:</p>
+                <p>Name: {{t.name2}} || Email: {{t.email2}} || Phone No: {{t.phnumber2}}</p>
+                <p> Third Participant Info:</p>
+                <p>Name: {{t.name3}} || Email: {{t.email3}} || Phone No: {{t.phnumber3}}</p>
+                <p>Proof of payment:</p>
+                <img src="{{t.proof_pic}}" alt="">
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </section>
+</body>
+</html>
